@@ -1,0 +1,27 @@
+id: pharma_pep_gen
+name: PharmaPepGen
+description: 
+inputs:
+  - nmae: input_files
+    type: data
+    label: Receptor(pdb)
+    optional: false
+    value: null
+    extensions: [pdb]
+    multiple: false
+    src: hda
+    help: null
+
+  - name: sdf_file
+    type: data
+    label: Ligand(sdf)
+    optional: false
+    value: null
+    extensions: [sdf]
+    multiple: false
+    src: hda
+    help: null
+
+input_exampels: "{'input_files': [{'id': None, 'src': 'hda'}], 'num_samples': None}"
+
+  
