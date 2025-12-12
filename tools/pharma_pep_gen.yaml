@@ -4,23 +4,21 @@ description:
 inputs:
   - nmae: input_files
     type: data
-    label: Receptor(pdb)
+    label: Pharmacophore json
     optional: false
     value: null
-    extensions: [pdb]
-    multiple: false
+    extensions: [json]
+    multiple: true
     src: hda
     help: null
 
-  - name: sdf_file
-    type: data
-    label: Ligand(sdf)
+  - name: num_samples
+    type: integer
+    label: Number of samples
     optional: false
     value: null
-    extensions: [sdf]
-    multiple: false
     src: hda
-    help: null
+    help: Number of samples to generate per input file
 
 input_exampels: "{'input_files': [{'id': None, 'src': 'hda'}], 'num_samples': None}"
 

@@ -1,0 +1,28 @@
+id: dbsearch
+name: DBSearch
+description: search small molecule database
+inputs:
+  - nmae: json_file
+    type: data
+    label: Pharmacophore JSON file
+    optional: false
+    value: null
+    extensions: [json]
+    multiple: false
+    src: hda
+    help: null
+
+# 条件怎么写
+  - name: sdf_file
+    type: data
+    label: Ligand(sdf)
+    optional: false
+    value: null
+    extensions: [sdf]
+    multiple: false
+    src: hda
+    help: null
+
+input_exampels: "{'pdb_file': {'id': None, 'src': 'hda'}, 'sdf_file': {'id': None, 'src': 'hda'}}"
+
+  

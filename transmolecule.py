@@ -141,10 +141,18 @@ class BaseTool:
         if not all(k in inputs for k in _inputs.keys()):
             raise ValueError(f"inputs should contain all keys: {_inputs}")
         
-        job = self.ctx.gi.tools.run_tool(history_id=self.ctx.history_id, tool_id=self.tool_config['id'], tool_inputs=inputs)
+        tool_outputs = self.ctx.gi.tools.run_tool(history_id=self.ctx.history_id, tool_id=self.tool_config['id'], tool_inputs=inputs)
 
-        return job
+        keep = ['id', 'hid', 'name', 'file_ext']
+        outputs = [{k: d[k] for k in keep} for d in tool_outputs['outputs']]
 
+        keep = ['id', 'hid', 'name']
+        output_collections = [{k: d[k] for k in keep} for d in tool_outputs['output_collections']]
+
+        keep = ['id', 'state', 'tool_id', 'create_time']
+        jobs = [{k: d[k] for k in keep} for d in tool_outputs['jobs']]
+
+        return {'jobs': jobs,'outputs': outputs, 'output_collections': output_collections}
 
 class Tool:
     def __init__(self, ctx: GalaxyCtx):
@@ -184,7 +192,6 @@ class Tool:
             raise ValueError(f"tool_id {tool_id}.yaml not found, please check tool id in tool panel: {self.tool_dict}")
         
         return BaseTool(self.ctx, tool_path)
-
 
 class TransMolecule:
     def __init__(self, url, key):
@@ -236,3 +243,7 @@ if __name__ == '__main__':
 
     # 测试
     # test()
+    """
+    上一个任务没有完成，会不会等待
+    其他工具配置
+    """
